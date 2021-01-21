@@ -31,7 +31,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
             httpServletResponse.sendRedirect("/task/create");
         }
         if (roles.contains("Employee")){
-            httpServletResponse.sendRedirect("/user/employee");
+            httpServletResponse.sendRedirect("/task/employee");
         }
 
     }
