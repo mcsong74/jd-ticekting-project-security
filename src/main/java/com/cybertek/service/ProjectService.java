@@ -18,4 +18,6 @@ public interface ProjectService {
     List<ProjectDTO> listAllProjectDetails();
 
     List<ProjectDTO> readAllByAssignedManager(User user);
+    //controller is calling service, so it is ProjectDTO
+    List<ProjectDTO> listAllNonCompletedProject();
 }

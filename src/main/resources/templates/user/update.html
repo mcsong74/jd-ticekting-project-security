@@ -129,7 +129,7 @@
                                             </div>
                                             <div class="col-md-5 mb-3">
                                                 <label for="role">Role</label>
-                                                <select class="custom-select d-block w-100" id="role" name="role">
+                                                <select class="custom-select d-block w-100" id="role" name="role" required>
                                                     <option th:value="''" th:text="Select"></option>
                                                     <option th:each="selectRole:${rolelist}"
                                                             th:value="${selectRole.id}"

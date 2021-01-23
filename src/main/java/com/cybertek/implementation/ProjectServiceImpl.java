@@ -117,4 +117,10 @@ public class ProjectServiceImpl implements ProjectService {
         return list.stream().map(projectMapper::convertToDTO).collect(Collectors.toList());
 
     }
+
+    @Override
+    public List<ProjectDTO> listAllNonCompletedProject() {
+        return projectRepository.findAllByProjectStatusIsNot(Status.COMPLETE)
+                .stream().map(projectMapper::convertToDTO).collect(Collectors.toList());
+    }
 }
