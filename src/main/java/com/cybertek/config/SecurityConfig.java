@@ -46,14 +46,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout()
+                //"/logout" has to be exact, naming convention for spring security
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/login") //navigate to login page
 
                 .and()
                 .rememberMe()
-                .tokenValiditySeconds(120)
-                .key("cybertekSecurity")
-                .userDetailsService(securityService);
+                .tokenValiditySeconds(120) //timeout in sec, if not assigned, unlimited
+                .key("cybertekSecurity") //set a key in cookie, name can be any
+                .userDetailsService(securityService); //pass securityService obj created in Service
     }
 
 
