@@ -10,6 +10,7 @@ import com.cybertek.mapper.TaskMapper;
 import com.cybertek.repository.TaskRepository;
 import com.cybertek.repository.UserRepository;
 import com.cybertek.service.TaskService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -118,8 +119,10 @@ public class TaskServiceImpl implements TaskService {
     }
     @Override
     public List<TaskDTO> listAllTasksByStatusIsNot(Status status) {
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        User user =userRepository.findByUserName(username);
 
-        User user =userRepository.findByUserName("jalba@test.com"); //hard coded, and will be dynamic later
+//        User user =userRepository.findByUserName("jalba@test.com"); //hard coded, and will be dynamic later
         List<Task> list = taskRepository.findAllByStatusIsNotAndAssignedEmployee(status, user);
 
         return list.stream().map(taskMapper::converToDTO).collect(Collectors.toList());
@@ -127,7 +130,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDTO> listAllTasksByProjectManager() {
-        User user = userRepository.findByUserName("msmith@test.com");
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUserName(username);
+
+//        User user = userRepository.findByUserName("msmith@test.com");
         List<Task> tasks=taskRepository.findAllByProjectAssignedManager(user);
         return tasks.stream().map(taskMapper::converToDTO).collect(Collectors.toList());
     }
@@ -144,7 +150,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDTO> listAllTasksByStatus(Status status) {
-        User user = userRepository.findByUserName("jalba@test.com");
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUserName(username);
+
+//        User user = userRepository.findByUserName("jalba@test.com");
         List<Task> list=taskRepository.findAllByStatusAndAssignedEmployee(status, user);
 
         return list.stream().map(taskMapper::converToDTO).collect(Collectors.toList());

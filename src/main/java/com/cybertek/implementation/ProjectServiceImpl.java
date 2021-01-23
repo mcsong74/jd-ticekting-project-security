@@ -14,6 +14,7 @@ import com.cybertek.service.TaskService;
 import com.cybertek.service.UserService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -92,8 +93,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectDTO> listAllProjectDetails() {
+
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDTO currentUserDTO = userService.findByUserName(username);
+
         //get manager, hard coded it for now, won't be needed when implement security
-        UserDTO currentUserDTO = userService.findByUserName("msmith@test.com");
+//        UserDTO currentUserDTO = userService.findByUserName("msmith@test.com");
         User user = userMapper.convertToEntity(currentUserDTO); //user == manager
         List<Project> projectList=projectRepository.findAllByAssignedManager(user);
 
