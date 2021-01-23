@@ -30,7 +30,8 @@ public class TaskController {
     @GetMapping("/create")
     public String createTask(Model model) {
         model.addAttribute("task", new TaskDTO());
-        model.addAttribute("projectlist", projectService.listAllProjects());
+        model.addAttribute("projectlist", projectService.listAllNonCompletedProject());
+//        model.addAttribute("projectlist", projectService.listAllProjects());
         model.addAttribute("employeelist", userService.listAllByRole("employee"));
         model.addAttribute("tasklist", taskService.listAllTasks());
         return "/task/create";
@@ -59,7 +60,8 @@ public class TaskController {
     @GetMapping("/update/{id}")
     public String editTask(@PathVariable("id") Long id, Model model) {
         model.addAttribute("task", taskService.findById(id));
-        model.addAttribute("projectlist", projectService.listAllProjects());
+        model.addAttribute("projectlist", projectService.listAllNonCompletedProject());
+//        model.addAttribute("projectlist", projectService.listAllProjects());
         model.addAttribute("employeelist", userService.listAllByRole("Employee"));
         model.addAttribute("tasklist", taskService.listAllTasks());
         return "/task/update";
@@ -88,7 +90,7 @@ public class TaskController {
         List<TaskDTO> tasks=taskService.listAllTasksByStatusIsNot(Status.COMPLETE);
         model.addAttribute("task", task);
         model.addAttribute("users", userService.listAllByRole("employee"));
-        model.addAttribute("projects", projectService.listAllProjects());
+        model.addAttribute("projects", projectService.listAllNonCompletedProject());
         model.addAttribute("tasks", tasks);
         model.addAttribute("statuses", Status.values());
         return "/task/employee-update";
