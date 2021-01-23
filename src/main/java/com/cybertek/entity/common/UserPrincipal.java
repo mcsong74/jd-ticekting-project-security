@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserPrincipal implements UserDetails {
-
+    // this class enables to convert User to Userdetails
     private User user;  //User entity
     public UserPrincipal(User user){
         this.user=user;
@@ -21,8 +21,11 @@ public class UserPrincipal implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorityList=new ArrayList<>();
         //describe authorization to Spring
+
+        //ManyToOne relation
+        // get all the roles and convert to authority
         GrantedAuthority authority=new SimpleGrantedAuthority(this.user.getRole().getDescription());
-        authorityList.add(authority);
+        authorityList.add(authority); //converted role add to the list
 
         //ManyToMany relations
 //        this.user.getRoles().forEach(role -> {

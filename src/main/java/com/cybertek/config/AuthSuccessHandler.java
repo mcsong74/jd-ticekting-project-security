@@ -23,7 +23,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         //authorities coming from UserPrincipal, authority
-
+        // determine each role's landing page below
         if (roles.contains("Admin")){
             httpServletResponse.sendRedirect("/user/create");
         }

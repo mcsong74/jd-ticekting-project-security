@@ -22,6 +22,6 @@ public class SecurityServiceImpl implements SecurityService {
         if(user==null){
             throw new UsernameNotFoundException("This user does not exists");
         }
-        return new UserPrincipal(user);
+        return new UserPrincipal(user); //return after conver user to UserDetails
     }
 }

@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private SecurityService securityService;
-    private AuthSuccessHandler authSuccessHandler;
+    private AuthSuccessHandler authSuccessHandler; //custom success url handler
 
     public SecurityConfig(SecurityService securityService, AuthSuccessHandler authSuccessHandler) {
         this.securityService = securityService;
@@ -40,12 +40,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
 //                .defaultSuccessUrl("/welcome")
+                //custom handler in case for success, depends on roles nav to diff url
                 .successHandler(authSuccessHandler)
-                .failureUrl("/login?error=true")
+                .failureUrl("/login?error=true") //when fail display error message
+
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
+
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(120)

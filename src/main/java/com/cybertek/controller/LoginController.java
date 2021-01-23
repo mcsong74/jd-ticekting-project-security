@@ -8,6 +8,7 @@ public class LoginController {
 	
 	@RequestMapping(value={"/","/login"})
 	public String login(){
+		//returns login.html
 		return "login";
 	}
 	
