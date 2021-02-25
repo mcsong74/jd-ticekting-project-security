@@ -4,6 +4,7 @@ import com.cybertek.dto.ProjectDTO;
 import com.cybertek.enums.Status;
 import com.cybertek.service.ProjectService;
 import com.cybertek.service.UserService;
+import lombok.ToString;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/project")
+@ToString
 public class ProjectController {
     ProjectService projectService;
     UserService userService;
