@@ -51,7 +51,7 @@ jobs:
       - run:
           name: Execute Deployment Script
           command: |
-            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-3-136-37-88.us-east-2.compute.amazonaws.com <<'ENDSSH'
+            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-100-26-23-167.compute-1.amazonaws.com <<'ENDSSH'
             /bin/bash bin/deploy_image.sh
             docker ps
 workflows:
