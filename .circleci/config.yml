@@ -42,8 +42,8 @@ jobs:
       - run: ls -a /tmp/workspace
       - run:
           name: Create Docker image and push to Docker hub
-          command: docker login -u $DOCKER_LOGIN --password $DOCKER_PWD && docker build -t
-          msong74/ticketing-application /tmp/workspace/ && docker push msong74/ticketing-application
+          name: Create Docker image and push to Docker hub
+            command: docker login -u $DOCKER_LOGIN --password $DOCKER_PWD && docker build -t msong74/ticketing-application /tmp/workspace/ && docker push msong74/ticketing-application
   deploy-job:
     docker:
       #specify the version you desire here
